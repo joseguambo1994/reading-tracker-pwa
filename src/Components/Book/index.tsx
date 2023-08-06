@@ -2,11 +2,9 @@ import { IBook } from '../../Sections/SheepList';
 import './styles.css';
 
 export const Book = ({
-  id,
   name,
   currentPage,
-  totalPages,
-  author,
+  totalPages
 }: IBook)=>{
   return (
    
