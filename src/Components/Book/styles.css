@@ -1,0 +1,6 @@
+.container2 {
+    background-color: 'purple';
+    padding:20;
+    height: '100vh';
+    overflow-y: 'scroll';
+  }
