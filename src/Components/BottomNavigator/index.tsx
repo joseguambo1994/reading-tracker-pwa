@@ -3,6 +3,7 @@ import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import {LocationCity, Favorite, Wallet} from '@mui/icons-material';
 import { Sections } from '../../App';
+import { Paper } from '@mui/material';
 
 interface Props {
   page: number,
@@ -15,11 +16,9 @@ const   BottomNavigator = ({
 }: Props)=>{
   
   return (
+    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+
     <BottomNavigation
-        style={{
-          position: 'absolute',
-          bottom: 0,
-        }}
         sx={{width: 1}}
         showLabels
         value={page}
@@ -32,6 +31,7 @@ const   BottomNavigator = ({
         <BottomNavigationAction label={'Sheep List'} icon={<Favorite />} />
         <BottomNavigationAction label={'Sheep Detail'} icon={<Wallet />} />
       </BottomNavigation>
+      </Paper>
   );
 }
 

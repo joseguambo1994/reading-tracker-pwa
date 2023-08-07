@@ -38,12 +38,15 @@ useEffect(()=>{
 }, [])
 
   return (
-    <div className="container">
+    <div style={{
+      backgroundColor:'yellow',
+      height:'100%'
+    }}>
       <div style={{
       backgroundColor: 'purple',
-      padding:20,
-      height: '100vh',
+      position: 'relative',
       overflowY: 'scroll',
+      height: '90vh',
     }}>
       {
         books.map(item => <Book 
@@ -53,8 +56,10 @@ useEffect(()=>{
           totalPages={item.totalPages}
           author={item.author}
         />)
-      }</div>
-    </div>
+      }
+      </div>
+      </div>
+
   );
 }
 

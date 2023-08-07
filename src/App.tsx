@@ -23,7 +23,15 @@ const App = () => {
   
   console.log('page', page)
   return (
-    <div className="container">
+    <div style={{
+      height:'100%',
+      width:'100%'
+    }}>
+      <div
+       style={{
+        height:'80vh',
+      }}
+      >
       {
         page === Sections.Auth && <Auth />
       }
@@ -33,10 +41,16 @@ const App = () => {
       {
         page === Sections.SheepDetail && <SheepDetail />
       }
+      </div>
+      <div style={{
+        position:'absolute',
+        bottom:0
+      }}>
       <BottomNavigator
       page={page}
       setPage={setPage}
       />
+      </div>
     </div>
   );
 }

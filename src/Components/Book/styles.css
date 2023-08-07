@@ -1,6 +1,15 @@
-.container2 {
-    background-color: 'purple';
-    padding:20;
-    height: '100vh';
-    overflow-y: 'scroll';
+.container {
+  
+    height: 5vh;
+    display: flex;
+
+    border-radius: 60;
+  }
+  .pagesText{
+    max-lines: 1;
+    flex:1;
+  }
+  .nameText{
+    flex:3;
+    max-lines: 1;
   }
