@@ -7,20 +7,19 @@ import '@fontsource/roboto/700.css';
 import SheepList from './Sections/SheepList';
 import Auth from './Sections/Auth';
 import BottomNavigator from './Components/BottomNavigator';
-import SheepDetail from './Sections/SheepDetail';
+import BookDetail from './Sections/BookDetail';
+
 
 export const Sections = {
   Auth: 0,
   SheepList: 1,
-  SheepDetail: 2,
+  BookDetail: 2,
   Error: 3,
 }
 
 
 const App = () => {
-  const [page,setPage] = useState<number>(Sections.Auth);
-  
-  console.log('page', page)
+  const [page,setPage] = useState<number>(Sections.Auth);  
   return (
     <div style={{
       height:'100%',
@@ -38,7 +37,7 @@ const App = () => {
         page === Sections.SheepList && <SheepList />
       }
       {
-        page === Sections.SheepDetail && <SheepDetail />
+        page === Sections.BookDetail && <BookDetail />
       }
       </div>
       <div style={{

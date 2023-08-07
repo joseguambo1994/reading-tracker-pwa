@@ -28,7 +28,6 @@ const SheepList = ()=>{
                   totalPages: doc.data()?.totalPages ,
                   author: doc.data()?.author ,
                  }));            
-            console.log( 'newData', tempData);
             setBooks(tempData)
         })
    
