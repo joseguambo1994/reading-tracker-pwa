@@ -1,0 +1,28 @@
+.container {
+  
+    height: 5vh;
+    display: flex;
+
+    border-radius: 60;
+  }
+  .pagesText{
+    max-lines: 1;
+    flex:1;
+  }
+  .nameText{
+    flex:3;
+    max-lines: 1;
+  }
+  .fill {
+    background: rgb(255, 175, 216);
+    margin-bottom: 20;
+  }
+  .containerName{
+    background-color: white;
+    padding: 2;
+    margin: 6;
+    margin-left: 6;
+    border-top-left-radius: 80;
+    border-top-right-radius: 80; 
+   }
+  

@@ -8,7 +8,6 @@ import SheepList from './Sections/SheepList';
 import Auth from './Sections/Auth';
 import BottomNavigator from './Components/BottomNavigator';
 import SheepDetail from './Sections/SheepDetail';
-// Import the functions you need from the SDKs you need
 
 export const Sections = {
   Auth: 0,

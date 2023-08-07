@@ -14,6 +14,7 @@ export interface IBook {
 
 const SheepList = ()=>{
   const [books, setBooks] = useState<IBook[]>([])
+  const [selected, setSelected] = useState<string>('')
 
   const fetchPost = async () => {
       
@@ -33,6 +34,11 @@ const SheepList = ()=>{
    
 }
 
+const handleSelected = (id: string) =>{
+  if (selected === id) return setSelected('')
+  setSelected(id)
+}
+
 useEffect(()=>{
     fetchPost();
 }, [])
@@ -50,11 +56,9 @@ useEffect(()=>{
     }}>
       {
         books.map(item => <Book 
-          id={item.id}
-          name={item.name}
-          currentPage={item.currentPage}
-          totalPages={item.totalPages}
-          author={item.author}
+          book={item}
+          open={selected === item.id}
+          setSelected={handleSelected}
         />)
       }
       </div>
