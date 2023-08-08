@@ -4,7 +4,6 @@ import { IBook } from '../../Sections/SheepList';
 import styles from './styles.module.css'
 import { animated, useSpring } from '@react-spring/web'
 import { Edit } from '@mui/icons-material';
-import { BookState, useBookStore } from '../../App';
 import { useNavigate  } from "react-router-dom";
 
 
@@ -28,8 +27,6 @@ export const Book = ({
     totalPages,
     author,
   } = book;
-  const edit = useBookStore((state: BookState) => state.edit)
-
 
   const completionPercentage: number = (currentPage / totalPages) * 100 || 0;
   const navigate = useNavigate();
@@ -80,7 +77,6 @@ export const Book = ({
         onClick={() => console.log('edittt',)}
       >
             <Button onClick={()=>{
-              edit(id);
               navigate('/bookdetail', { state: { bookId: id} });
             }} >
          <Edit color='secondary'/>
