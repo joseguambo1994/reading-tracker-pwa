@@ -3,7 +3,6 @@ import './styles.css';
 import { db } from '../../firebase';
 import { useEffect, useState } from 'react';
 import Book from '../../Components/Book';
-import { BookState, useBookStore } from '../../App';
 
 export interface IBook {
   id: string,
@@ -16,7 +15,6 @@ export interface IBook {
 const SheepList = ()=>{
   const [books, setBooks] = useState<IBook[]>([])
   const [selected, setSelected] = useState<string>('')
-  const edit = useBookStore((state: BookState) => state.edit)
 
 
   const fetchPost = async () => {
@@ -44,7 +42,6 @@ const handleSelected = (id: string) =>{
 }
 
 useEffect(()=>{
-    edit('');
     fetchPost();
 }, [])
 

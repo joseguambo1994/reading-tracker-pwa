@@ -7,22 +7,9 @@ import SheepList from './Sections/SheepList';
 import Auth from './Sections/Auth';
 import BottomNavigator from './Components/BottomNavigator';
 import BookDetail from './Sections/BookDetail';
-import { create } from 'zustand'
 import { Route, Routes } from "react-router-dom";
 
-
-
-export interface BookState {
-  id: string
-  edit: (id: string) => void
-}
-export const useBookStore = create<BookState>((set) => ({
-  id: '',
-  edit: (id) => set(() => ({ id: id }))
-}))
-
 const App = () => {
-  const id = useBookStore((state: BookState) => state.id)
  
   return (
     <div style={{

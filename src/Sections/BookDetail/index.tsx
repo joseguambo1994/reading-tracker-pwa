@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import './styles.css';
 import { addDoc, collection, deleteDoc, setDoc} from "firebase/firestore"; 
 import { db } from '../../firebase';
-import { BookState, useBookStore } from '../../App';
 import { doc, getDoc } from "firebase/firestore";
 import { useFormik } from 'formik';
 import { useLocation } from 'react-router-dom';
@@ -29,8 +28,6 @@ const BookDetail = ()=>{
       alert(JSON.stringify(values, null, 2));
     },
   });
-
-  const edit = useBookStore((state: BookState) => state.edit)
 
 const createBook = async () => {
   const docRef = await addDoc(collection(db, "books"), {
@@ -58,24 +55,6 @@ const deleteBook = async (id: string) => {
   await deleteDoc(doc(db, "books", id));
 }
 
-
-const getBook  = async (id: string) => {
-  const docRef = doc(db, "books", id);
-  const docSnap = await getDoc(docRef);
-
-  if (docSnap.exists()) {
-    const data = docSnap.data();
-    formik.setFieldValue('name',data?.name )
-    formik.setFieldValue('author',data?.author )
-    formik.setFieldValue('currentPage',data?.currentPage )
-    formik.setFieldValue('totalPages',data?.totalPages )
-    console.log("Document data:", docSnap.data());
-    
-  } else {
-    console.log("No such document!");
-  }
-}
-
   const handleSubmit = () =>{
     if (
       formik.values.name !== '' &&
@@ -85,7 +64,6 @@ const getBook  = async (id: string) => {
     ){
       setLoading(true)
       id && id !== '' ? editBook(id) : createBook();
-      edit('')
     }
   }
   const handleDelete = () => {
@@ -93,6 +71,23 @@ const getBook  = async (id: string) => {
   }
 
   useEffect(()=>{
+    const getBook  = async (id: string) => {
+      const docRef = doc(db, "books", id);
+      const docSnap = await getDoc(docRef);
+    
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        formik.setFieldValue('name',data?.name )
+        formik.setFieldValue('author',data?.author )
+        formik.setFieldValue('currentPage',data?.currentPage )
+        formik.setFieldValue('totalPages',data?.totalPages )
+        console.log("Document data:", docSnap.data());
+        
+      } else {
+        console.log("No such document!");
+      }
+    }
+    
     if (id && id !== '') getBook(id)
   }, [id])
 
