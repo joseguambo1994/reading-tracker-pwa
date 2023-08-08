@@ -1,8 +1,12 @@
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { colors } from '../../Constants/colors';
 import { IBook } from '../../Sections/SheepList';
 import styles from './styles.module.css'
 import { animated, useSpring } from '@react-spring/web'
+import { Edit } from '@mui/icons-material';
+import { BookState, useBookStore } from '../../App';
+import { useNavigate  } from "react-router-dom";
+
 
 
 interface Props {
@@ -24,14 +28,20 @@ export const Book = ({
     totalPages,
     author,
   } = book;
+  const edit = useBookStore((state: BookState) => state.edit)
+
 
   const completionPercentage: number = (currentPage / totalPages) * 100 || 0;
-
+  const navigate = useNavigate();
   const animation = useSpring({
     opacity: open ? 1 : 0,
 
     x: open ? 60 : 100,
     backgroundColor: open ? 'white':'rgb(255, 175, 216)' 
+  })
+
+  const editAnimation = useSpring({
+    opacity: open ? 1 : 0,
   })
 
   const resizeAnimation = useSpring({
@@ -47,40 +57,42 @@ export const Book = ({
   return (
     <>
       <animated.div
-        //  style={resizeAnimation}
-        //  className={styles.containerName}
           style={resizeAnimation}
-        // style={{
-        //   backgroundColor: colors.white,
-        //   padding: 2,
-        //   //  marginTop: 6,
-        //   marginBottom: 6,
-        //   marginLeft: 6,
-        //   borderTopLeftRadius: 80,
-        //   borderBottomLeftRadius: 80,
-
-        // }}
         onClick={() => setSelected(id)}
       >
         <div
           style={{
-           // background: `linear-gradient(to right,  ${colors.purpleDark} 0%,  ${colors.purpleLight} ${completionPercentage}%, ${colors.white} 100%)`,
-            background: `linear-gradient(to right, ${colors.purpleLight} ${completionPercentage}%, ${colors.white} ${completionPercentage}% 100%)`,
-
+            background: open ?  `linear-gradient(to right, ${colors.purpleDark} ${completionPercentage}%, ${colors.white} ${completionPercentage}% 100%)`:
+            `linear-gradient(to right, ${colors.purpleLight} ${completionPercentage}%, ${colors.white} ${completionPercentage}% 100%)`,
+            display: 'flex',
+            flexDirection:'row-reverse',
             padding: 2,
             paddingLeft: 20,
             paddingRight: 10,
             borderTopLeftRadius: 60,
             borderBottomLeftRadius: 60,
+       
           }}
 
         >
+          <animated.div
+          style={editAnimation}
+        onClick={() => console.log('edittt',)}
+      >
+            <Button onClick={()=>{
+              edit(id);
+              navigate('/bookdetail', { state: { bookId: id} });
+            }} >
+         <Edit color='secondary'/>
+         </Button>
+         </animated.div>
+
           <Typography variant="body1" component="body"
 
           >
             {name}
           </Typography>
-
+       
         </div>
 
       </animated.div>
@@ -102,7 +114,7 @@ export const Book = ({
           >
             {'Paginas: ' + currentPage + '/' + totalPages}
           </Typography>
-
+          
         </animated.div>
       }
     </>
