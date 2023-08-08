@@ -69,27 +69,27 @@ const deleteBook = async (id: string) => {
   const handleDelete = () => {
     deleteBook(id)
   }
-
-  useEffect(()=>{
-    const getBook  = async (id: string) => {
-      const docRef = doc(db, "books", id);
-      const docSnap = await getDoc(docRef);
-    
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        formik.setFieldValue('name',data?.name )
-        formik.setFieldValue('author',data?.author )
-        formik.setFieldValue('currentPage',data?.currentPage )
-        formik.setFieldValue('totalPages',data?.totalPages )
-        console.log("Document data:", docSnap.data());
-        
-      } else {
-        console.log("No such document!");
-      }
+  const getBook  = async (id: string) => {
+    const docRef = doc(db, "books", id);
+    const docSnap = await getDoc(docRef);
+  
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      formik.setFieldValue('name',data?.name )
+      formik.setFieldValue('author',data?.author )
+      formik.setFieldValue('currentPage',data?.currentPage )
+      formik.setFieldValue('totalPages',data?.totalPages )
+      console.log("Document data:", docSnap.data());
+      
+    } else {
+      console.log("No such document!");
     }
+  }
+  useEffect(()=>{
+   
     
     if (id && id !== '') getBook(id)
-  }, [id])
+  }, [id, ])
 
   return (
    <div style={{
