@@ -18,9 +18,11 @@
     "@types/react-dom": "^18.2.7",
     "firebase": "^10.1.0",
     "formik": "^2.4.3",
+    "lottie-react": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
+    "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4",
@@ -36,7 +38,7 @@
     "workbox-routing": "^6.6.0",
     "workbox-strategies": "^6.6.0",
     "workbox-streams": "^6.6.0",
-    "zustand": "^4.4.0"
+    "zustand": "^4.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
