@@ -69,6 +69,7 @@ const deleteBook = async (id: string) => {
   const handleDelete = () => {
     deleteBook(id)
   }
+  
   const getBook  = async (id: string) => {
     const docRef = doc(db, "books", id);
     const docSnap = await getDoc(docRef);
@@ -85,11 +86,11 @@ const deleteBook = async (id: string) => {
       console.log("No such document!");
     }
   }
+
   useEffect(()=>{
-   
-    
     if (id && id !== '') getBook(id)
-  }, [id, ])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id])
 
   return (
    <div style={{
